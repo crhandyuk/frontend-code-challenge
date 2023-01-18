@@ -1,5 +1,198 @@
-///////////////////////////////////////////////////////////
-//
-// Add styles here
-//
-///////////////////////////////////////////////////////////
+// Variables ================================================================================================================================
+
+// Colours
+@white:           #ffffff;
+@formtext:        #e6e6e6;
+
+@stiletto:        #333034;
+@nero:            #252525;
+@dynamicBlack:    #191919;
+@midnight:        #403c41;
+@silver:          #bfbfbf;
+@alpha:           #1d1d1d;
+
+@sugarGrape:      #8e29ff;
+@mauve:           #d1a9ff;
+
+// fonts
+@mainFont:         Arial, Helvetica, Sans-serif;  
+
+//General
+@border:           2px solid @midnight;
+
+// Mixins ==============================================================================================================================
+
+//Box shadow for container and form elements
+
+.box-shadow(@horizontal: 2px, @vertical: 2px, @blur: 10px, @color: @dynamicBlack, @opacity: .9, @spread: 1px, @inset: false) {
+    @red: red(@color);
+    @green: green(@color);
+    @blue: blue(@color);
+
+    & when (@inset =true) {
+        -webkit-box-shadow: inset @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+        -moz-box-shadow: inset @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+        box-shadow: inset @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+    }
+
+    & when (@inset =false) {
+        -webkit-box-shadow: @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+        -moz-box-shadow: @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+        box-shadow: @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+    }
+}
+
+.input-shadow(@horizontal: 1px, @vertical: 0px, @blur: 6px, @color: #1d1d1d, @opacity: 0.9, @spread: 0px, @inset: false) {
+    @red: red(@color);
+    @green: green(@color);
+    @blue: blue(@color);
+
+    & when (@inset =true) {
+        -webkit-box-shadow: inset @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+        -moz-box-shadow: inset @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+        box-shadow: inset @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+    }
+
+    & when (@inset =false) {
+        -webkit-box-shadow: @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+        -moz-box-shadow: @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+        box-shadow: @horizontal @vertical @blur @spread rgba(@red, @green, @blue, @opacity);
+    }
+}
+
+// Styles ====================================================================================================================================
+
+body {
+    background-image:
+    linear-gradient(
+        to right, 
+        @stiletto, @dynamicBlack
+    );
+}
+
+#container {
+    margin: 0 auto;
+    width: 100%;
+    max-width:535px;
+    margin-top: 14px;
+    border-radius: 10px ~"/" 10px;
+    .box-shadow();
+    @media (max-width: 480px){
+        max-width: 100%;
+    }
+    .form {
+        background-image:
+            linear-gradient(
+                to bottom right, 
+                @stiletto, @dynamicBlack
+            );
+        color: @formtext;
+        font-family: @mainFont;
+        padding: 25px 20px 28px;
+        border:@border;
+        border-radius: 10px ~"/" 10px;
+        h3 {
+            margin: 0px 0px 25px;
+            font-family: @mainFont;
+            font-weight: 600;
+            color: @silver;
+            font-size: 18px;
+        }
+        // Form elements
+        label {
+            width:100%;
+            font-size:15px;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+        input {
+            .input-shadow();
+            margin: 0px 0px 22px;
+            color: @silver;
+            font-family: @mainFont;
+            width:100%;
+            box-sizing: border-box;
+            border-radius: 16px ~"/" 16px;
+            padding: 9px 15px;
+            background-color: @midnight;
+            display: inline-block;
+            border: 0;
+            font-size: 16px;
+            &:focus {
+                outline: none;
+            }
+        }
+
+        // Datepicker
+        .date{
+            display:flex;
+            margin: 3px 0px 22px;
+            label {width:100%;}
+            input {
+                margin-bottom: 0;
+                &:nth-child(1) {
+                    max-width:70px;
+                    border-radius: 0px; 
+                    border-bottom-left-radius: 16px; 
+                    border-top-left-radius: 16px;
+                    border-bottom-right-radius: 0px; 
+                    border-top-right-radius: 0px; 
+                }
+                &:nth-child(2) {
+                    max-width:70px; 
+                    border-radius: 0px;
+                    margin: 0px 4px;
+                }
+                &:nth-child(3) {
+                    max-width:90px;
+                    border-radius: 0px; 
+                    border-bottom-right-radius: 16px; 
+                    border-top-right-radius: 16px;
+                }
+            }
+            // Calendar image date selector
+            img {
+                margin: 0px 8px;
+                display:inline-block;
+                cursor: pointer;
+            }
+             // Hide date picker element
+            .datepicker {display:none;}
+        }
+       
+        // Buttons
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            button {
+                .box-shadow();
+                background-image:
+                    linear-gradient(
+                        to right, 
+                        @stiletto, @nero
+                    );
+                cursor: pointer;
+                padding: 15px 34px;
+                color: @silver;
+                font-weight: 600;
+                border-radius: 16px;
+                border: @border;
+                &.btn_mauve {
+                    background-image:
+                    linear-gradient(
+                        to right, 
+                        @mauve, @sugarGrape
+                    );
+                    border:2px solid @mauve;
+                    color: @white;
+                    &:disabled, [disabled]{
+                       opacity: 0.5;
+                        cursor: auto;
+                    }
+                }
+            }
+        }  
+    }
+}
+
+

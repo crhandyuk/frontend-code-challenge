@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" href="data:,">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>DT Frontend Code Challenge</title>
-	</head>
-	<body>
-		<h1>DT Frontend Code Challenge</h1>
-		<script type="module" src="/main.js"></script>
-	</body>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" href="data:,">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>DT Frontend Code Challenge - Craig Handy</title>
+	<!-- Jquery libraries for JS and Calendar controls -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<!-- Script file for form functions and validation -->
+	<script type="text/javascript" src="scripts.js"></script>
+</head>
+
+<body>
+
+	<script type="module" src="/main.js"></script>
+
+	<div id="container" class="box-shadow">
+		<form id="form" method="post" class="form" onsubmit="return false;">
+			<h3>Sample Wizard form app</h3>
+			<label>Input 1</label>
+			<input type="text" required name="input1" id="input1" class="required" onkeyup="enableSubmit()" />
+			<label>Input 2</label>
+			<input type="text" required name="input2" id="input2" class="required" onkeyup="enableSubmit()" />
+			<label>Input 3</label>
+			<div class="date">
+				<input class="day" id="day" readonly type="text" name="day" placeholder="DD">
+				<input class="month" id="month" readonly type="text" name="month" placeholder="MM">
+				<input class="year" id="year" readonly type="text" name="year" placeholder="YYYY">
+				<input type="text" id="datepicker" name="datepicker" hidden="hidden" class="datepicker required" onChange="enableSubmit()">
+				<img src="calendar-icon.svg" id="id_imgcalendar" alt="date picker" width="20" />
+			</div>
+			<div class="button-container">
+				<button id="back" type="reset">Back</button>
+				<button type="submit" name="btn-submit" id="btn-submit" class="btn_mauve" disabled>Next</button>
+			</div>
+		</form>
+	</div>
+
+</body>
 </html>
